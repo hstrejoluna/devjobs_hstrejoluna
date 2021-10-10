@@ -4,7 +4,7 @@
   "description": "A plaftorm for upload developer jobs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./index"
   },
   "repository": {
     "type": "git",
@@ -12,7 +12,9 @@
   },
   "keywords": [
     "Nodejs",
-    "mongodb"
+    "mongodb",
+    "Express",
+    "Express Handlebars"
   ],
   "author": "Hector Sebastian Trejo Luna",
   "license": "GPL-2.0",
