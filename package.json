@@ -1,0 +1,23 @@
+{
+  "name": "devjobs_hstrejoluna",
+  "version": "1.0.0",
+  "description": "A plaftorm for upload developer jobs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hstrejoluna/devjobs_hstrejoluna.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "mongodb"
+  ],
+  "author": "Hector Sebastian Trejo Luna",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/hstrejoluna/devjobs_hstrejoluna/issues"
+  },
+  "homepage": "https://github.com/hstrejoluna/devjobs_hstrejoluna#readme"
+}
