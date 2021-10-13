@@ -18,6 +18,7 @@ app.engine(
   "handlebars",
   exphbs({
     defaultLayout: "layout",
+    helpers: require('./helpers/handlebars')
   })
 );
 app.set("view engine", "handlebars");

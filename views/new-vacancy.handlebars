@@ -11,7 +11,7 @@
       />
     </div>
     <div class="campo">
-      <label>Company or Organization</label>
+      <label>Company / Organization</label>
       <input
         type="text"
         name="Company"
@@ -54,6 +54,15 @@
       <label>Description</label>
       <input type="hidden" id="x" name="description" />
       <trix-editor input="x"></trix-editor>
+    </div>
+
+    <h3>Skills</h3>
+    <ul class="lista-conocimientos">
+      {{#selectSkills a}}{{/selectSkills}}
+    </ul>
+
+    <div class="campo centrar-horizontal">
+      <input type="submit" value="Publish" class="btn btn-azul" />
     </div>
   </form>
 </main>
