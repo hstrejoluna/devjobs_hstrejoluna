@@ -23,14 +23,14 @@ const vacanciesSchema = new mongoose.Schema({
     default: 0,
     trim: true,
   },
-  contract: {
+  Contract: {
     type: String,
   },
   Description: {
     type: String,
     trim: true,
   },
-  url: {
+  Url: {
     type: String,
     lowercase: true,
   },
@@ -45,7 +45,7 @@ const vacanciesSchema = new mongoose.Schema({
 });
 vacanciesSchema.pre("save", function (next) {
   // creates URL
-  const url = slug(this.title);
+  const url = slug(this.Title);
   this.url = `${url}-${shortid.generate()}`;
   next();
 });
