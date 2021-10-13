@@ -1,6 +1,6 @@
 <main class="contenedor">
   <form action="/vacancies/new" method="POST" class="default-form">
-    <h3>General Information</h3>
+    <h3>👮👮 General Information 👮👮</h3>
     <div class="campo">
       <label>Title</label>
       <input
@@ -37,10 +37,18 @@
         required
       />
     </div>
-      <div class="campo">
+    <div class="campo">
       <label>Contract</label>
-        <select name="Contract"
-    </div>
+      <select name="Contract">
+        <option value="" disabled selected>- Choose One 🌙-</option>
+        <option value="Freelance">Freelance</option>
+        <option value="Full Time">Full Time</option>
+        <option value="Half Time">Half Time</option>
+        <option value="Per Project">Per Project</option>
+        <option value="Other">Specify on the description</option>
 
+      </select>
+    </div>
+    <h3>Description or suspense script</h3>
   </form>
 </main>

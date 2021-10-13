@@ -8,13 +8,12 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/app.css" />
-    <title>{{namePage}}</title>
   </head>
   <body>
 
     <div class="nombre-sitio contenedor">
       <h1>
-        <a href="/">devJobs</a>
+        <a href="/">{{tagLine}}</a>
       </h1>
 
       {{#if barra}}
@@ -28,7 +27,7 @@
     </div>
 
     <header class="site-header contenedor separador">
-      <h2>{{pageName}}</h2>
+      <h2>{{tagLine}}</h2>
       {{#if tagline}}
         <p class="tagline">{{tagLine}}</p>
       {{/if}}

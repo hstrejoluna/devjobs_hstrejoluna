@@ -4,7 +4,7 @@ const slug = require("slug");
 const shortid = require("shortid");
 
 const vacanciesSchema = new mongoose.Schema({
-  title: {
+  Title: {
     type: String,
     required: "The vacancy title is required",
     trim: true,
@@ -13,12 +13,12 @@ const vacanciesSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  location: {
+  Location: {
     type: String,
     trim: true,
     required: "Location is required",
   },
-  salary: {
+  Salary: {
     type: String,
     default: 0,
     trim: true,
@@ -26,7 +26,7 @@ const vacanciesSchema = new mongoose.Schema({
   contract: {
     type: String,
   },
-  description: {
+  Description: {
     type: String,
     trim: true,
   },
@@ -34,7 +34,7 @@ const vacanciesSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
   },
-  skills: [String],
+  Skills: [String],
   candidates: [
     {
       name: String,
