@@ -5,6 +5,7 @@ const vacanciesController = require("../controllers/vacanciesController");
 
 module.exports = () => {
   router.get("/", homeController.showJobs);
-  router.get("/vacancies", vacanciesController.formNewVacancy);
+  router.get("/vacancies/new", vacanciesController.formNewVacancy);
+  router.post("/vacancies/new", vacanciesController.addVacancy)
   return router;
 };

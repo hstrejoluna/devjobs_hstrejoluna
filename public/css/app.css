@@ -11,6 +11,12 @@ body {
   background-color: #100e17;
   font-family: "Rubik", sans-serif;
   font-size: 1.6rem;
+  
+}
+
+::selection {
+  color: rgb(255, 255, 255);
+  background: #00c897;
 }
 p {
   font-size: 1.6rem;

@@ -9,9 +9,14 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
+
 require("dotenv").config({ path: "variables.env" });
 
 const app = express();
+
+app.use(express.urlencoded({extended: true})); 
+app.use(express.json());
+
 
 // Enable handlebars as a view
 app.engine(
@@ -37,5 +42,6 @@ app.use(session({
 }))
 
 app.use("/", router());
+
 
 app.listen(process.env.PORT);
