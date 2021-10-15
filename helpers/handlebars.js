@@ -32,7 +32,9 @@ module.exports = {
     let html = "";
     skills.forEach((skill) => {
       html += `
-            <li>${skill}</li>    
+            <li ${
+              selected.includes(skill) ? ' class="activo"' : ''
+            }>${skill}</li>    
     `;
     });
     return (options.fn().html = html);
