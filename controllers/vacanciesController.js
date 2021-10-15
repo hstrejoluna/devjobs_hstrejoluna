@@ -20,3 +20,16 @@ exports.addVacancy = async (req, res) => {
   //redirects
   res.redirect(`/vacancies/${newVacancy.url}`);
 };
+
+exports.showVacancy = async (req, res, next) =>{
+  const vacancy = await Vacancy.findOne({ url: req.params.url }).lean();
+
+  // if there's not request
+  if(!vacancy) return next();
+
+  res.render('vacancy', {
+    vacancy,
+    pageName : vacancy.Title,
+    barra: true
+  })
+}

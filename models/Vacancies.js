@@ -45,8 +45,8 @@ const vacanciesSchema = new mongoose.Schema({
 });
 vacanciesSchema.pre("save", function (next) {
   // creates URL
-  const url = slug(this.Title);
-  this.url = `${url}-${shortid.generate()}`;
+  const Url = slug(this.Title);
+  this.Url = `${Url}-${shortid.generate()}`;
   next();
 });
 

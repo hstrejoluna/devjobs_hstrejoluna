@@ -6,6 +6,10 @@ const vacanciesController = require("../controllers/vacanciesController");
 module.exports = () => {
   router.get("/", homeController.showJobs);
   router.get("/vacancies/new", vacanciesController.formNewVacancy);
-  router.post("/vacancies/new", vacanciesController.addVacancy)
+  router.post("/vacancies/new", vacanciesController.addVacancy);
+
+  // Show one vacancy
+  router.get("/vacancies/:url", vacanciesController.showVacancy);
   return router;
 };
+ 
