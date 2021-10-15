@@ -1,11 +1,16 @@
 <main class="contenedor">
-  <form action="/vacancies/new" method="POST" class="default-form">
+  <form
+    action="/vacancies/edit/{{vacancy.Url}}"
+    method="POST"
+    class="default-form"
+  >
     <h3>👮👮 General Information 👮👮</h3>
     <div class="campo">
       <label>Title</label>
       <input
         type="text"
         name="Title"
+        value="{{vacancy.Title}}"
         placeholder="Ej: React Developer"
         required
       />
@@ -15,6 +20,7 @@
       <input
         type="text"
         name="Company"
+        value="{{vacancy.Company}}"
         placeholder="Agency, Anon, Corporate..."
         required
       />
@@ -24,6 +30,7 @@
       <input
         type="text"
         name="Location"
+        value="{{vacancy.Location}}"
         placeholder="(Country) + Remote, In Site, Home Office..."
         required
       />
@@ -33,6 +40,7 @@
       <input
         type="text"
         name="Salary"
+        value="{{vacancy.Salary}}"
         placeholder="USD, USB, Crypto, Sheeps, Food, A Large Pizza and a 3 Lt. Coke?"
         required
       />
@@ -52,7 +60,12 @@
     <h3>Description or suspense script</h3>
     <div class="campo descripcion">
       <label>Description</label>
-      <input type="hidden" id="x" name="Description" />
+      <input
+        type="hidden"
+        value="{{{vacancy.Description}}}"
+        id="x"
+        name="Description"
+      />
       <trix-editor input="x"></trix-editor>
     </div>
 
