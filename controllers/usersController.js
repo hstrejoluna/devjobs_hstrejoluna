@@ -42,9 +42,11 @@ exports.validateRegister = (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
   const user = new Users(req.body);
-  const newUser = await user.save();
-  if (!newUser) {
-    return next();
+  try {
+    await user.save();
+    res.redirect("/login");
+  } catch (error) {
+    req.flash("error", error);
+    res.redirect("/create-account");
   }
-  res.redirect("/login");
 };
