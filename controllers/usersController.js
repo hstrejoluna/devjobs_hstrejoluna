@@ -36,8 +36,10 @@ exports.validateRegister = (req, res, next) => {
       tagLine: "Publish your vacancies free, just create an account",
       messages: req.flash(),
     });
+    return;
+
   }
-  return;
+  next();
 };
 
 exports.createUser = async (req, res, next) => {

@@ -44,5 +44,5 @@ const cleanAlerts = () => {
       alerts.parentElement.removeChild(alerts);
       clearInterval(interval);
     }
-  }, 2000);
+  }, 1500);
 };
