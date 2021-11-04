@@ -9,8 +9,8 @@
       <label>Title</label>
       <input
         type="text"
-        name="Title"
-        value="{{vacancy.Title}}"
+        name="title"
+        value="{{vacancy.title}}"
         placeholder="Ej: React Developer"
         required
       />
@@ -19,8 +19,8 @@
       <label>Company / Organization</label>
       <input
         type="text"
-        name="Company"
-        value="{{vacancy.Company}}"
+        name="company"
+        value="{{vacancy.company}}"
         placeholder="Agency, Anon, Corporate..."
         required
       />
@@ -29,8 +29,8 @@
       <label>Location</label>
       <input
         type="text"
-        name="Location"
-        value="{{vacancy.Location}}"
+        name="location"
+        value="{{vacancy.location}}"
         placeholder="(Country) + Remote, In Site, Home Office..."
         required
       />
@@ -39,16 +39,16 @@
       <label>Salary</label>
       <input
         type="text"
-        name="Salary"
-        value="{{vacancy.Salary}}"
+        name="salary"
+        value="{{vacancy.salary}}"
         placeholder="USD, USB, Crypto, Sheeps, Food, A Large Pizza and a 3 Lt. Coke?"
         required
       />
     </div>
     <div class="campo">
       <label>Contract</label>
-      <select name="Contract">
-        {{#contractType vacancy.Contract}}
+      <select name="contract">
+        {{#contractType vacancy.contract}}
           <option value="" disabled selected>- Choose One 🌙-</option>
           <option value="Freelance">Freelance</option>
           <option value="Full Time">Full Time</option>
@@ -63,20 +63,20 @@
       <label>Description</label>
       <input
         type="hidden"
-        value="{{{vacancy.Description}}}"
+        value="{{{vacancy.description}}}"
         id="x"
-        name="Description"
+        name="description"
       />
       <trix-editor input="x"></trix-editor>
     </div>
 
     <h3>Skills</h3>
     <ul class="lista-conocimientos">
-      {{#selectSkills vacancy.Skills}}{{/selectSkills}}
+      {{#selectSkills vacancy.skills}}{{/selectSkills}}
     </ul>
 
     <div class="campo centrar-horizontal">
-      <input type="hidden" name="Skills" id="Skills" />
+      <input type="hidden" name="skills" id="skills" />
       <input type="submit" value="Save Changes" class="btn btn-azul" />
     </div>
   </form>

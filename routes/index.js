@@ -3,6 +3,9 @@ const router = express.Router();
 const homeController = require("../controllers/homeController");
 const vacanciesController = require("../controllers/vacanciesController");
 
+router.use(express.json())
+
+
 module.exports = () => {
   router.get("/", homeController.showJobs);
   router.get("/vacancies/new", vacanciesController.formNewVacancy);

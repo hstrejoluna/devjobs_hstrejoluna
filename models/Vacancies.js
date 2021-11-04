@@ -4,37 +4,37 @@ const slug = require("slug");
 const shortid = require("shortid");
 
 const vacanciesSchema = new mongoose.Schema({
-  Title: {
+  title: {
     type: String,
     required: "The vacancy title is required",
     trim: true,
   },
-  Company: {
+  company: {
     type: String,
     trim: true,
   },
-  Location: {
+  location: {
     type: String,
     trim: true,
     required: "Location is required",
   },
-  Salary: {
+  salary: {
     type: String,
     default: 0,
     trim: true,
   },
-  Contract: {
+  contract: {
     type: String,
   },
-  Description: {
+  description: {
     type: String,
     trim: true,
   },
-  Url: {
+  url: {
     type: String,
     lowercase: true,
   },
-  Skills: [String],
+  skills: [String],
   candidates: [
     {
       name: String,
@@ -45,8 +45,8 @@ const vacanciesSchema = new mongoose.Schema({
 });
 vacanciesSchema.pre("save", function (next) {
   // creates URL
-  const Url = slug(this.Title);
-  this.Url = `${Url}-${shortid.generate()}`;
+  const url = slug(this.title);
+  this.url = `${url}-${shortid.generate()}`;
   next();
 });
 

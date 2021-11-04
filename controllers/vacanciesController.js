@@ -19,12 +19,13 @@ exports.addVacancy = async (req, res) => {
 };
 
 exports.showVacancy = async (req, res, next) => {
-  const vacancy = await Vacancy.findOne({ url: req.params.Title });
+  const vacancy = await Vacancy.findOne({url: req.params.Url});
+  console.log("VACANTE ES:"+vacancy)
   // if there's not request
   if (!vacancy) return next();
   res.render("vacancy", {
     vacancy,
-    pageName: vacancy.Url,
+    pageName: vacancy.Title,
     barra: true,
   });
 };
