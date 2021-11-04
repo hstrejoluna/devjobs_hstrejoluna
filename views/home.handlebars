@@ -4,22 +4,22 @@
 
   {{#if vacancies.length}}
 
-  {{#each vacancies as | vacancy |}}
+  {{#each vacancies}}
   <div class="vacante">
     <div class="caja">
-      <h3>{{vacancy.company}}</h3>
-      <p class="puesto">{{vacancy.title}}</p>
+      <h3>{{company}}</h3>
+      <p class="puesto">{{title}}</p>
     </div>
     <div class="caja">
       <p class="etiqueta">Location</p>
-      <p class="nombre">{{vacancy.location}}</p>
+      <p class="nombre">{{location}}</p>
     </div>
     <div class="caja">
       <p class="etiqueta">Contract</p>
-      <p class="nombre contrato">{{vacancy.contract}}</p>
+      <p class="nombre contrato">{{contract}}</p>
     </div>
     <div class="caja centrar-vertical">
-      <a href="/vacancies/{{vacancy.url}}" class="btn btn-verde">More Info</a>
+      <a href="/vacancies/{{url}}" class="btn btn-verde">More Info</a>
     </div>
   </div> <!-- Vacancy --->
   {{/each}}

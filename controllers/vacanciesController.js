@@ -11,7 +11,7 @@ exports.formNewVacancy = (req, res) => {
 exports.addVacancy = async (req, res) => {
   const vacancy = new Vacancy(req.body);
   //creates array of skills
-  vacancy.Skills = req.body.Skills.split(",");
+  vacancy.skills = req.body.skills.split(",");
   // saves to database
   const newVacancy = await vacancy.save();
   //redirects
@@ -19,7 +19,7 @@ exports.addVacancy = async (req, res) => {
 };
 
 exports.showVacancy = async (req, res, next) => {
-  const vacancy = await Vacancy.findOne({ url: req.params.url });
+  const vacancy = await Vacancy.findOne({ url: req.params.url }).lean();
   console.log("VACANTE ES:" + vacancy);
   // if there's not request
   if (!vacancy) return next();
@@ -31,7 +31,7 @@ exports.showVacancy = async (req, res, next) => {
 };
 
 exports.formEditVacancy = async (req, res, next) => {
-  const vacancy = await Vacancy.findOne({ url: req.params.url });
+  const vacancy = await Vacancy.findOne({ url: req.params.url }).lean();
   if (!vacancy) return next();
   res.render("edit-vacancy", {
     vacancy,
@@ -51,7 +51,7 @@ exports.editVacancy = async (req, res) => {
       new: true,
       runValidators: true,
     }
-  );
+  ).lean();
 
   res.redirect(`/vacancies/${vacancy.url}`);
 };
