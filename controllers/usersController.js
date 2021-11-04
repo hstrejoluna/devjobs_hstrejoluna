@@ -9,17 +9,42 @@ exports.formCreateAccount = (req, res) => {
 };
 
 exports.validateRegister = (req, res, next) => {
-  res.checkBody("name", "Your name is required").notEmpty();
+  req.sanitizeBody("name").escape();
+  req.sanitizeBody("email").escape();
+  req.sanitizeBody("password").escape();
+  req.sanitizeBody("confirm").escape();
 
-  const errors = res.validationErrors();
-  
-}
+  req.checkBody("name", "Your name is required").notEmpty();
+  req.checkBody("email", "Your email is not valid").isEmail();
+  req.checkBody("password", "Your password can't be empty").notEmpty();
+  req
+    .checkBody("confirm", "Your confirmation password can't be empty")
+    .notEmpty();
+  req
+    .checkBody("confirm", "The password is not the same")
+    .equals(req.body.password);
+
+  const errors = req.validationErrors();
+  if (errors) {
+    req.flash(
+      "error",
+      errors.map((error) => error.msg)
+    );
+
+    res.render("create-account", {
+      pageName: "Signup on DevJobs",
+      tagLine: "Publish your vacancies free, just create an account",
+      messages: req.flash(),
+    });
+  }
+  return;
+};
 
 exports.createUser = async (req, res, next) => {
   const user = new Users(req.body);
   const newUser = await user.save();
-  if(!newUser){
-    return next()
+  if (!newUser) {
+    return next();
   }
-  res.redirect("/login")
+  res.redirect("/login");
 };

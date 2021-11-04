@@ -8,7 +8,7 @@ const router = require("./routes");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const expressValidator = require("express-validator");
+const expressValidator = require('express-validator');
 const flash = require("connect-flash");
 
 const handlebars = require("handlebars");
