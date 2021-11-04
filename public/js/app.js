@@ -19,7 +19,7 @@ const addSkills = (e) => {
     }
   }
   const skillsArray = [...skills];
-  document.querySelector("#Skills").value = skillsArray;
+  document.querySelector("#skills").value = skillsArray;
 };
 
 const skillsSelected = () => {
