@@ -8,3 +8,4 @@ mongoose.connection.on("error", (error) => {
 });
 
 require("../models/Vacancies");
+require("../models/Users");

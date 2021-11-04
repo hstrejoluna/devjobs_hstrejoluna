@@ -26,6 +26,7 @@
   "homepage": "https://github.com/hstrejoluna/devjobs_hstrejoluna#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
+    "bcrypt": "^5.0.1",
     "concurrently": "^6.3.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",
