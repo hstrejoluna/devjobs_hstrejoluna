@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,7 +21,7 @@
 
       {{#if barra}}
         <div class="buscador">
-          <form action="#">
+          <form action="/buscador">
             <input type="text" class="buscar" />
             <input type="submit" value="Search" />
           </form>
@@ -29,7 +30,7 @@
     </div>
 
     <header class="site-header contenedor separador">
-      <h2>{{tagLine}}</h2>
+      <h2>{{pageName}}</h2>
       {{#if tagline}}
         <p class="tagline">{{tagLine}}</p>
       {{/if}}

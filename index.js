@@ -9,6 +9,9 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
+const handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+
 
 require("dotenv").config({ path: "variables.env" });
 
@@ -22,6 +25,7 @@ app.use(express.json());
 app.engine(
   "handlebars",
   exphbs({
+    handlebars: allowInsecurePrototypeAccess(handlebars),
     defaultLayout: "layout",
     helpers: require('./helpers/handlebars')
   })
