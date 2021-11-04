@@ -8,6 +8,13 @@ exports.formCreateAccount = (req, res) => {
   });
 };
 
+exports.validateRegister = (req, res, next) => {
+  res.checkBody("name", "Your name is required").notEmpty();
+
+  const errors = res.validationErrors();
+  
+}
+
 exports.createUser = async (req, res, next) => {
   const user = new Users(req.body);
   const newUser = await user.save();

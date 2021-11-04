@@ -3,8 +3,7 @@ const router = express.Router();
 const homeController = require("../controllers/homeController");
 const vacanciesController = require("../controllers/vacanciesController");
 const usersController = require("../controllers/usersController");
-router.use(express.json())
-
+router.use(express.json());
 
 module.exports = () => {
   router.get("/", homeController.showJobs);
@@ -16,9 +15,13 @@ module.exports = () => {
 
   // Edit Vacancy
   router.get("/vacancies/edit/:url", vacanciesController.formEditVacancy);
-  router.post('/vacancies/edit/:url', vacanciesController.editVacancy);
+  router.post("/vacancies/edit/:url", vacanciesController.editVacancy);
 
-  router.get('/create-account', usersController.formCreateAccount);
-  router.post('/create-account', usersController.createUser);
+  router.get("/create-account", usersController.formCreateAccount);
+  router.post(
+    "/create-account",
+    usersController.validateRegister,
+    usersController.createUser
+  );
   return router;
 };
