@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const homeController = require("../controllers/homeController");
 const vacanciesController = require("../controllers/vacanciesController");
-
+const usersController = require("../controllers/usersController");
 router.use(express.json())
 
 
@@ -17,5 +17,7 @@ module.exports = () => {
   // Edit Vacancy
   router.get("/vacancies/edit/:url", vacanciesController.formEditVacancy);
   router.post('/vacancies/edit/:url', vacanciesController.editVacancy);
+
+  router.get('/create-account', usersController.formCreateAccount);
   return router;
 };
