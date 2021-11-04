@@ -15,37 +15,37 @@ exports.addVacancy = async (req, res) => {
   // saves to database
   const newVacancy = await vacancy.save();
   //redirects
-  res.redirect(`/vacancies/${newVacancy.Url}`);
+  res.redirect(`/vacancies/${newVacancy.url}`);
 };
 
 exports.showVacancy = async (req, res, next) => {
-  const vacancy = await Vacancy.findOne({url: req.params.Url});
-  console.log("VACANTE ES:"+vacancy)
+  const vacancy = await Vacancy.findOne({ url: req.params.url });
+  console.log("VACANTE ES:" + vacancy);
   // if there's not request
   if (!vacancy) return next();
   res.render("vacancy", {
     vacancy,
-    pageName: vacancy.Title,
+    pageName: vacancy.title,
     barra: true,
   });
 };
 
 exports.formEditVacancy = async (req, res, next) => {
-  const vacancy = await Vacancy.findOne({ url: req.params.Url });
+  const vacancy = await Vacancy.findOne({ url: req.params.url });
   if (!vacancy) return next();
   res.render("edit-vacancy", {
     vacancy,
-    pageName: `Edit - ${vacancy.Title}`,
+    pageName: `Edit - ${vacancy.title}`,
   });
 };
 
 exports.editVacancy = async (req, res) => {
   const vacancyUpdated = req.body;
 
-  vacancyUpdated.skills = req.body.Skills.split(",");
+  vacancyUpdated.skills = req.body.skills.split(",");
 
   const vacancy = await Vacancy.findOneAndUpdate(
-    { url: req.params.Url },
+    { url: req.params.url },
     vacancyUpdated,
     {
       new: true,
