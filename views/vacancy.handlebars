@@ -1,15 +1,15 @@
 <div class="contenido-superior vacante contenedor">
   <div class="caja">
     <p class="etiqueta">Company / organization</p>
-    <p class="nombre">{{vacancy.Company}}</p>
+    <p class="nombre">{{vacancy.company}}</p>
   </div>
   <div class="caja">
     <p class="etiqueta">Location</p>
-    <p class="nombre">{{vacancy.Location}}</p>
+    <p class="nombre">{{vacancy.location}}</p>
   </div>
   <div class="caja">
     <p class="etiqueta">Contract</p>
-    <p class="nombre contrato">{{vacancy.Contract}}</p>
+    <p class="nombre contrato">{{vacancy.contract}}</p>
   </div>
 </div>
 
@@ -17,7 +17,7 @@
   <main class="contenido">
     <h2>Vacancy Description</h2>
     <div class="vacante-descripcion">
-      {{{vacancy.Description}}}
+      {{{vacancy.description}}}
     </div>
     <a
       href="/vacancies/edit/{{vacancy.Url}}"
@@ -27,7 +27,7 @@
   <aside class="sidebar">
     <h2>Required Skills</h2>
     <ul class="skills">
-      {{#each vacancy.Skills}}
+      {{#each vacancy.skills}}
         <li>{{this}}</li>
       {{/each}}
     </ul>
