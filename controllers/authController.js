@@ -24,7 +24,13 @@ exports.showPanel = async (req, res) => {
     pageName: "Admin Dashboard",
     tagLine: "Create and Manage your vacancies here",
     logout: true,
-    name: req.user.name,  
+    name: req.user.name,
     vacancies,
   });
+};
+
+exports.logout = (req, res) => {
+  req.logout();
+  req.flash("correcto", "You have been logged out, see you later");
+  res.redirect("/login");
 };
