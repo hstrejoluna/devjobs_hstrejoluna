@@ -3,6 +3,8 @@ const router = express.Router();
 const homeController = require("../controllers/homeController");
 const vacanciesController = require("../controllers/vacanciesController");
 const usersController = require("../controllers/usersController");
+const authController = require("../controllers/authController");
+
 router.use(express.json());
 
 module.exports = () => {
@@ -24,5 +26,6 @@ module.exports = () => {
     usersController.createUser
   );
   router.get("/login", usersController.formLogin);
+  router.post("/login", authController.authUser);
   return router;
 };
