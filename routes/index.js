@@ -23,5 +23,6 @@ module.exports = () => {
     usersController.validateRegister,
     usersController.createUser
   );
+  router.get("/login", usersController.formLogin);
   return router;
 };

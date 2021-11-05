@@ -52,3 +52,10 @@ exports.createUser = async (req, res, next) => {
     res.redirect("/create-account");
   }
 };
+
+exports.formLogin = (req, res) => {
+  res.render("login", {
+    pageName: "Login devJobs",
+    
+  })
+}
