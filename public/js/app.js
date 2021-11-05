@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const skills = document.querySelector(".lista-conocimientos");
+
+  let alerts = document.querySelector(".alertas");
+  if (alerts) {
+    cleanAlerts();
+  }
+
   if (skills) {
     skills.addEventListener("click", addSkills);
 
@@ -44,5 +50,5 @@ const cleanAlerts = () => {
       alerts.parentElement.removeChild(alerts);
       clearInterval(interval);
     }
-  }, 1500);
+  }, 5000);
 };
