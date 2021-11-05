@@ -10,6 +10,9 @@ exports.formNewVacancy = (req, res) => {
 
 exports.addVacancy = async (req, res) => {
   const vacancy = new Vacancy(req.body);
+
+  vacancy.author = req.user._id;
+
   //creates array of skills
   vacancy.skills = req.body.skills.split(",");
   // saves to database

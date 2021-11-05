@@ -42,6 +42,11 @@ const vacanciesSchema = new mongoose.Schema({
       cv: String,
     },
   ],
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Users",
+    required: "The author is required",
+  },
 });
 vacanciesSchema.pre("save", function (next) {
   // creates URL
