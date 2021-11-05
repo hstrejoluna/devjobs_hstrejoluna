@@ -27,5 +27,7 @@ module.exports = () => {
   );
   router.get("/login", usersController.formLogin);
   router.post("/login", authController.authUser);
+
+  router.get("/admin", authController.showPanel);
   return router;
 };
