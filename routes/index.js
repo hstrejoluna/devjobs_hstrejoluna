@@ -46,10 +46,12 @@ module.exports = () => {
   router.get("/login", usersController.formLogin);
   router.post("/login", authController.authUser);
 
+  router.get("/admin", authController.verifyUser, authController.showPanel);
+
   router.get(
-    "/admin",
+    "/edit-profile",
     authController.verifyUser,
-    authController.showPanel
+    usersController.formEditProfile
   );
   return router;
 };

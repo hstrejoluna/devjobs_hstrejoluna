@@ -37,7 +37,6 @@ exports.validateRegister = (req, res, next) => {
       messages: req.flash(),
     });
     return;
-
   }
   next();
 };
@@ -56,6 +55,12 @@ exports.createUser = async (req, res, next) => {
 exports.formLogin = (req, res) => {
   res.render("login", {
     pageName: "Login devJobs",
-    
-  })
-}
+  });
+};
+
+exports.formEditProfile = (req, res) => {
+  res.render("edit-profile", {
+    pageName: "Edit Profile",
+    user: req.user,
+  });
+};
