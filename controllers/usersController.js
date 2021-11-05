@@ -64,3 +64,17 @@ exports.formEditProfile = (req, res) => {
     user: req.user,
   });
 };
+
+exports.editProfile = async (req, res) => {
+  const user = await Users.findById(req.user._id);
+  user.name = req.body.name;
+  user.email = req.body.email;
+  if (req.body.password) {
+    user.password = req.body.password;
+  }
+  await user.save();
+
+  req.flash("correcto", "Your profile has been updated");
+
+  res.redirect("/admin");
+};

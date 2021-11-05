@@ -53,5 +53,11 @@ module.exports = () => {
     authController.verifyUser,
     usersController.formEditProfile
   );
+
+  router.post(
+    "/edit-profile",
+    authController.verifyUser,
+    usersController.editProfile
+  );
   return router;
 };
