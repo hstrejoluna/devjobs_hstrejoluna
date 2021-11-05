@@ -9,15 +9,33 @@ router.use(express.json());
 
 module.exports = () => {
   router.get("/", homeController.showJobs);
-  router.get("/vacancies/new", vacanciesController.formNewVacancy);
-  router.post("/vacancies/new", vacanciesController.addVacancy);
+
+  router.get(
+    "/vacancies/new",
+    authController.verifyUser,
+    vacanciesController.formNewVacancy
+  );
+
+  router.post(
+    "/vacancies/new",
+    authController.verifyUser,
+    vacanciesController.addVacancy
+  );
 
   // Show one vacancy
   router.get("/vacancies/:url", vacanciesController.showVacancy);
 
   // Edit Vacancy
-  router.get("/vacancies/edit/:url", vacanciesController.formEditVacancy);
-  router.post("/vacancies/edit/:url", vacanciesController.editVacancy);
+  router.get(
+    "/vacancies/edit/:url",
+    authController.verifyUser,
+    vacanciesController.formEditVacancy
+  );
+  router.post(
+    "/vacancies/edit/:url",
+    authController.verifyUser,
+    vacanciesController.editVacancy
+  );
 
   router.get("/create-account", usersController.formCreateAccount);
   router.post(
@@ -28,6 +46,10 @@ module.exports = () => {
   router.get("/login", usersController.formLogin);
   router.post("/login", authController.authUser);
 
-  router.get("/admin", authController.showPanel);
+  router.get(
+    "/admin",
+    authController.verifyUser,
+    authController.showPanel
+  );
   return router;
 };
