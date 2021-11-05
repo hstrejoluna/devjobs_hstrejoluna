@@ -62,6 +62,8 @@ exports.formEditProfile = (req, res) => {
   res.render("edit-profile", {
     pageName: "Edit Profile",
     user: req.user,
+    logout: true,
+    name: req.user.name,  
   });
 };
 

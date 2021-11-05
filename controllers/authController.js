@@ -23,6 +23,8 @@ exports.showPanel = async (req, res) => {
   res.render("admin", {
     pageName: "Admin Dashboard",
     tagLine: "Create and Manage your vacancies here",
+    logout: true,
+    name: req.user.name,  
     vacancies,
   });
 };
