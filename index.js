@@ -8,8 +8,9 @@ const router = require("./routes");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const expressValidator = require('express-validator');
+const expressValidator = require("express-validator");
 const flash = require("connect-flash");
+const passport = require("./config/passport");
 
 const handlebars = require("handlebars");
 const {
@@ -51,6 +52,9 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DATABASE }),
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 
