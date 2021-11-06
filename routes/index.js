@@ -35,6 +35,7 @@ module.exports = () => {
   router.post(
     "/vacancies/edit/:url",
     authController.verifyUser,
+    vacanciesController.validateVacancy,
     vacanciesController.editVacancy
   );
 
@@ -63,6 +64,7 @@ module.exports = () => {
   router.post(
     "/edit-profile",
     authController.verifyUser,
+    usersController.validateRegister,
     usersController.editProfile
   );
   return router;
