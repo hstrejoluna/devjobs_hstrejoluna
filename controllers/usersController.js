@@ -1,15 +1,30 @@
 const mongoose = require("mongoose");
 const Users = mongoose.model("Users");
 const multer = require("multer");
+const shortid = require("shortid");
 
 exports.uploadImage = (req, res, next) => {
   upload(req, res, function (error) {
-    if (error instanceof multer.multerError) {
+    if (error instanceof multer.MulterError) {
       return next();
     }
   });
   next();
 };
+
+const settingsMulter = {
+  storage: (fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, __dirname + "../../public/uploads/profiles");
+    },
+    filename: (req, file, cb) => {
+      const extension = file.mimetype.split("/"[1]);
+      console.log(`${shortid.generate()}.${extension}`);
+    },
+  })),
+};
+
+const upload = multer(settingsMulter).single("image");
 
 exports.formCreateAccount = (req, res) => {
   res.render("create-account", {
