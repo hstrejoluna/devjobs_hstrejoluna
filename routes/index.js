@@ -64,7 +64,7 @@ module.exports = () => {
   router.post(
     "/edit-profile",
     authController.verifyUser,
-    usersController.validateRegister,
+    usersController.validateEditProfile,
     usersController.editProfile
   );
   return router;
