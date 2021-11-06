@@ -77,16 +77,27 @@ const actionsList = (e) => {
     }).then((result) => {
       if (result.value) {
         const url = `${location.origin}/vacancies/delete/${e.target.dataset.delete}`;
-        axios.delete(url, { params: { url } }).then(function (response) {
-          if (response.status === 200) {
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        axios
+          .delete(url, { params: { url } })
+          .then(function (response) {
+            if (response.status === 200) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
 
-            e.target.parentElement.parentElement.parentElement.removeChild(
-              e.target.parentElement.parentElement
-            );
-          }
-        });
+              e.target.parentElement.parentElement.parentElement.removeChild(
+                e.target.parentElement.parentElement
+              );
+            }
+          })
+          .catch(() => {
+            Swal.fire({
+              type: "error",
+              title: "Opps!",
+              text: "Can't be deleted",
+            });
+          });
       }
     });
+  } else if (e.target.tagName === "A") {
+    window.location.href = e.target.href;
   }
 };
