@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Vacancy = mongoose.model("Vacancy");
+const { body, validationResult } = require("express-validator");
 
 exports.formNewVacancy = (req, res) => {
   res.render("new-vacancy", {
@@ -57,4 +58,42 @@ exports.editVacancy = async (req, res) => {
   ).lean();
 
   res.redirect(`/vacancies/${vacancy.url}`);
+};
+
+exports.validateVacancy = async (req, res, next) => {
+  // sanitizar los campos
+  req.sanitizeBody("title").escape();
+  req.sanitizeBody("company").escape();
+  req.sanitizeBody("location").escape();
+  req.sanitizeBody("salary").escape();
+  req.sanitizeBody("contract").escape();
+  req.sanitizeBody("skills").escape();
+
+  // validar
+  req.checkBody("title", "Add a Title to the vacancy").notEmpty();
+  req.checkBody("company", "Add a Company").notEmpty();
+  req.checkBody("location", "Add Location").notEmpty();
+  req.checkBody("contract", "Select type of contract").notEmpty();
+  req.checkBody("skills", "Skills are required").notEmpty();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    // Recargar la vista con los errores
+    req.flash(
+      "error",
+      errors.map((error) => error.msg)
+    );
+
+    res.render("new-vacancy", {
+      pageName: "New Vacancy",
+      tagLine: "Fill out the form and publish your vacancy",
+      logout: true,
+      name: req.user.name,
+      messages: req.flash(),
+    });
+    return;
+  }
+
+  next(); // siguiente middleware
 };
