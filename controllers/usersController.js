@@ -22,6 +22,14 @@ const settingsMulter = {
       console.log(`${shortid.generate()}.${extension}`);
     },
   })),
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  },
+  limits: { fileSize: 500000 },
 };
 
 const upload = multer(settingsMulter).single("image");
@@ -99,6 +107,11 @@ exports.editProfile = async (req, res) => {
   if (req.body.password) {
     user.password = req.body.password;
   }
+
+  if (req.file) {
+    user.image = req.file.filename;
+  }
+
   await user.save();
 
   req.flash("correcto", "Your profile has been updated");
