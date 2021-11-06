@@ -97,3 +97,8 @@ exports.validateVacancy = async (req, res, next) => {
 
   next(); // siguiente middleware
 };
+
+exports.deleteVacancy = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+};

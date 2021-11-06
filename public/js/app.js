@@ -1,3 +1,6 @@
+import axios from "axios";
+import Swal from "sweetalert2";
+
 document.addEventListener("DOMContentLoaded", () => {
   const skills = document.querySelector(".lista-conocimientos");
 
@@ -10,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     skills.addEventListener("click", addSkills);
 
     skillsSelected();
+  }
+
+  const vacanciesList = document.querySelector(".panel-administracion");
+  if (vacanciesList) {
+    vacanciesList.addEventListener("click", actionsList);
   }
 });
 
@@ -51,4 +59,14 @@ const cleanAlerts = () => {
       clearInterval(interval);
     }
   }, 1500);
+};
+
+// delete vacancy
+const actionsList = (e) => {
+  e.preventDefault();
+
+  if (e.target.dataset.delete) {
+  } else {
+    window.location.href = e.target.dataset.href;
+  }
 };

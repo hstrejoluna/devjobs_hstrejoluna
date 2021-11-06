@@ -39,6 +39,8 @@ module.exports = () => {
     vacanciesController.editVacancy
   );
 
+  router.delete("/vacancies/delete/:id", vacanciesController.deleteVacancy);
+
   router.get("/create-account", usersController.formCreateAccount);
   router.post(
     "/create-account",
@@ -48,10 +50,7 @@ module.exports = () => {
   router.get("/login", usersController.formLogin);
   router.post("/login", authController.authUser);
 
-  router.get("/logout",
-    authController.verifyUser,
-    authController.logout
-  );
+  router.get("/logout", authController.verifyUser, authController.logout);
 
   router.get("/admin", authController.verifyUser, authController.showPanel);
 
