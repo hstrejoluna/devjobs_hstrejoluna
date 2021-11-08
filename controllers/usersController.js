@@ -6,12 +6,18 @@ const shortid = require("shortid");
 
 exports.uploadImage = (req, res, next) => {
   upload(req, res, function (error) {
-    if (error instanceof multer.MulterError) {
-      return console.log("Error en upload image" + error);
+    if (error) {
+      if (error instanceof multer.MulterError) {
+        return next();
+      } else {
+        req.flash("error", error.message);
+      }
+      res.redirect("/admin");
+      return;
+    } else {
+      return next();
     }
   });
-  console.log("upload image paso sin pedos");
-  next();
 };
 
 const settingsMulter = {
@@ -33,7 +39,7 @@ const settingsMulter = {
     ) {
       cb(null, true);
     } else {
-      cb(null, false);
+      cb(new Error("Format not valid"), false);
     }
   },
 };
