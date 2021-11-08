@@ -1,35 +1,41 @@
 const mongoose = require("mongoose");
 const Users = mongoose.model("Users");
 const multer = require("multer");
+const sharp = require("sharp");
 const shortid = require("shortid");
 
 exports.uploadImage = (req, res, next) => {
   upload(req, res, function (error) {
     if (error instanceof multer.MulterError) {
-      return next();
+      return console.log("Error en upload image" + error);
     }
   });
+  console.log("upload image paso sin pedos");
   next();
 };
 
 const settingsMulter = {
+  limits: { fileSize: 500000 },
   storage: (fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, __dirname + "../../public/uploads/profiles");
     },
     filename: (req, file, cb) => {
-      const extension = file.mimetype.split("/"[1]);
-      console.log(`${shortid.generate()}.${extension}`);
+      const extension = file.mimetype.split("/")[1];
+      cb(null, `${shortid.generate()}.${extension}`);
     },
   })),
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+  fileFilter(req, file, cb) {
+    if (
+      file.mimetype === "image/jpeg" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype === "image/png"
+    ) {
       cb(null, true);
     } else {
       cb(null, false);
     }
   },
-  limits: { fileSize: 500000 },
 };
 
 const upload = multer(settingsMulter).single("image");
@@ -109,6 +115,7 @@ exports.editProfile = async (req, res) => {
   }
 
   if (req.file) {
+    console.log("file requested" + req.file.name);
     user.image = req.file.filename;
   }
 
