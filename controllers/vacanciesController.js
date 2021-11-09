@@ -166,3 +166,21 @@ const settingsMulter = {
 };
 
 const upload = multer(settingsMulter).single("cv");
+
+exports.contact = async (req, res, next) => {
+  const vacancy = await Vacancy.findOne({ url: req.params.url });
+
+  if (!vacancy) return next();
+
+  const newCandidate = {
+    name: req.body.name,
+    email: req.body.email,
+    cv: req.file.filename,
+  };
+
+  vacancy.candidates.push(newCandidate);
+  await vacancy.save();
+
+  req.flash("correcto", "Your application has delivered successfully");
+  res.redirect("/");
+};

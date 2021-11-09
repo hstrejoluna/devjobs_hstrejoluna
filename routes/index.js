@@ -70,8 +70,8 @@ module.exports = () => {
 
   router.post(
     "/vacancies/:url",
-    vacancyController.uploadCV,
-    vacancyController.contact
+    vacanciesController.uploadCV,
+    vacanciesController.contact
   );
   return router;
 };
