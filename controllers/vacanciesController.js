@@ -137,7 +137,7 @@ exports.uploadCV = (req, res, next) => {
       } else {
         req.flash("error", error.message);
       }
-      res.redirect("/back");
+      res.redirect("back");
       return;
     } else {
       return next();
