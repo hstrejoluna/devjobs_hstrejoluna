@@ -10,7 +10,6 @@ exports.authUser = passport.authenticate("local", {
 
 exports.verifyUser = (req, res, next) => {
   if (req.isAuthenticated()) {
-    console.log("User is authenticated");
     return next();
   }
   console.log("User is not authenticated");

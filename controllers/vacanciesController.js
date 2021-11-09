@@ -184,3 +184,22 @@ exports.contact = async (req, res, next) => {
   req.flash("correcto", "Your application has delivered successfully");
   res.redirect("/");
 };
+
+exports.showCandidates = async (req, res, next) => {
+  const vacancy = await Vacancy.findById(req.params.id);
+
+  if (vacancy.author != req.user._id.toString()) {
+    return next();
+  }
+
+  if (!vacancy) return next();
+  console.log("pasamos la validacion");
+
+  res.render("candidates", {
+    pageName: `Candidates ${vacancy.title}`,
+    logout: true,
+    name: req.user.name,
+    image: req.user.image,
+    candidates: vacancy.candidates,
+  });
+};

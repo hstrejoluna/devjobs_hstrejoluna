@@ -73,5 +73,12 @@ module.exports = () => {
     vacanciesController.uploadCV,
     vacanciesController.contact
   );
+
+  router.get(
+    "/candidates/:id",
+    authController.verifyUser,
+    vacanciesController.showCandidates
+  );
+
   return router;
 };
