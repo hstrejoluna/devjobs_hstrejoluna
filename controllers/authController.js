@@ -15,7 +15,6 @@ exports.verifyUser = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  console.log("User is not authenticated");
   res.redirect("/login");
 };
 
@@ -61,9 +60,9 @@ exports.sendToken = async (req, res) => {
 
   await sendEmail.send({
     user,
-    subject: "Password Reset",
+    subject: 'Password Reset',
     resetUrl,
-    filename: "reset",
+    fileName: 'reset',
   });
 
   req.flash("correcto", "We sent you an email with instructions");

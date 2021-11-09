@@ -12,12 +12,26 @@ let transport = nodemailer.createTransport({
   },
 });
 
+transport.use(
+  "compile",
+  hbs({
+    viewEngine: {
+      extName: "handlebars",
+      partialsDir: __dirname + "/../views/emails",
+      layoutsDir: __dirname + "/../views/emails",
+      defaultLayout: "reset.handlebars",
+    },
+    viewPath: __dirname + "/../views/emails",
+    extName: ".handlebars",
+  })
+);
+
 exports.send = async (options) => {
   const optionsEmail = {
     from: "DevJobs <noreply@devjobs.com",
     to: options.user.email,
     subject: options.subject,
-    template: options.file,
+    template: options.fileName,
     context: {
       resetUrl: options.resetUrl,
     },
