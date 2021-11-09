@@ -11,3 +11,18 @@ let transport = nodemailer.createTransport({
     pass: emailConfig.pass,
   },
 });
+
+exports.send = async (options) => {
+  const optionsEmail = {
+    from: "DevJobs <noreply@devjobs.com",
+    to: options.user.email,
+    subject: options.subject,
+    template: options.file,
+    context: {
+      resetUrl: options.resetUrl,
+    },
+  };
+
+  const sendMail = util.promisify(transport.sendMail, transport);
+  return sendMail.call(transport, optionsEmail);
+};

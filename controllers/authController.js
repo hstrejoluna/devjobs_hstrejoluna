@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Vacancy = mongoose.model("Vacancy");
 const Users = mongoose.model("Users");
 const crypto = require("crypto");
+const sendEmail = require("../handlers/email");
 
 exports.authUser = passport.authenticate("local", {
   successRedirect: "/admin",
@@ -58,7 +59,12 @@ exports.sendToken = async (req, res) => {
   await user.save();
   const resetUrl = `http://${req.headers.host}/recover-password/${user.token}`;
 
-  console.log(resetUrl);
+  await sendEmail.send({
+    user,
+    subject: "Password Reset",
+    resetUrl,
+    filename: "reset",
+  });
 
   req.flash("correcto", "We sent you an email with instructions");
   res.redirect("/login");
