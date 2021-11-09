@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
 const Users = mongoose.model("Users");
 const multer = require("multer");
-const sharp = require("sharp");
 const shortid = require("shortid");
 
 exports.uploadImage = (req, res, next) => {
   upload(req, res, function (error) {
     if (error) {
       if (error instanceof multer.MulterError) {
-        return next();
+        if (error.code === "LIMIT_FILE_SIZE") {
+          req.flash("error", "The file is too big: 500kb Max");
+        } else {
+          req.flash("error", error.message);
+        }
       } else {
         req.flash("error", error.message);
       }
