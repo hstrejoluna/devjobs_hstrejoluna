@@ -52,6 +52,9 @@ module.exports = () => {
 
   router.get("/logout", authController.verifyUser, authController.logout);
 
+  router.get("/recover-password",
+    authController.formRecoverPassword)
+
   router.get("/admin", authController.verifyUser, authController.showPanel);
 
   router.get(
@@ -63,7 +66,7 @@ module.exports = () => {
   router.post(
     "/edit-profile",
     authController.verifyUser,
-    usersController.validateEditProfile,
+    //usersController.validateEditProfile,
     usersController.uploadImage,
     usersController.editProfile
   );

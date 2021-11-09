@@ -34,3 +34,10 @@ exports.logout = (req, res) => {
   req.flash("correcto", "You have been logged out, see you later");
   res.redirect("/login");
 };
+
+exports.formRecoverPassword = (req, res) => {
+  res.render("recover-password", {
+    pageName: "Recover Password",
+    tagLine: "Enter your email for send recover link",
+  });
+};
