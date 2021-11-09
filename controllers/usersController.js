@@ -112,6 +112,7 @@ exports.formEditProfile = (req, res) => {
     user: req.user,
     logout: true,
     name: req.user.name,
+    image: req.user.image,
   });
 };
 
@@ -156,6 +157,7 @@ exports.validateEditProfile = (req, res, next) => {
       user: req.user,
       logout: true,
       name: req.user.name,
+      image: req.user.image,
     });
     return;
   }

@@ -30,8 +30,11 @@
       {{#if logout}}
         <div class="cerrar-sesion">
           <p>Hello {{name}}</p>
+          {{#if image}}
+            <img src="/uploads/profiles/{{image}}" class="admin-perfil" />
+          {{/if}}
           <a href="/admin">Dashboard</a>
-           <a href="/logout">Logout</a>
+          <a href="/logout">Logout</a>
         </div>
       {{/if}}
     </div>

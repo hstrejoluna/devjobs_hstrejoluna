@@ -11,7 +11,6 @@ body {
   background-color: #100e17;
   font-family: "Rubik", sans-serif;
   font-size: 1.6rem;
-  
 }
 
 ::selection {
@@ -351,6 +350,12 @@ trix-toolbar .trix-button--icon-strike {
   text-decoration: none;
 }
 
+.admin-perfil {
+  width: 120px;
+  align-self: flex-start;
+  margin-right: 1rem;
+}
+
 .lista-conocimientos {
   list-style: none;
   padding: 0;
@@ -420,6 +425,10 @@ p.candidatos {
 .cerrar-sesion a {
   margin: 0 2rem 0 0;
   color: #888;
+}
+
+.cerrar-sesion img{
+  width: 80px;
 }
 .cerrar-sesion {
   margin-top: 2rem;

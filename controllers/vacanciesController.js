@@ -40,6 +40,9 @@ exports.formEditVacancy = async (req, res, next) => {
   res.render("edit-vacancy", {
     vacancy,
     pageName: `Edit - ${vacancy.title}`,
+    logout: true,
+    name: req.user.name,
+    image: req.user.image,
   });
 };
 
@@ -91,6 +94,7 @@ exports.validateVacancy = async (req, res, next) => {
       logout: true,
       name: req.user.name,
       messages: req.flash(),
+      image: req.user.image,
     });
     return;
   }
@@ -109,8 +113,6 @@ exports.deleteVacancy = async (req, res) => {
   } else {
     res.status(403).send("Error");
   }
-
-
 };
 
 const verifyAuthor = (vacancy = {}, user = {}) => {
