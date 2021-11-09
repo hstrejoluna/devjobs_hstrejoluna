@@ -52,8 +52,8 @@ module.exports = () => {
 
   router.get("/logout", authController.verifyUser, authController.logout);
 
-  router.get("/recover-password",
-    authController.formRecoverPassword)
+  router.get("/recover-password", authController.formRecoverPassword);
+  router.post("/recover-password", authController.sendToken);
 
   router.get("/admin", authController.verifyUser, authController.showPanel);
 

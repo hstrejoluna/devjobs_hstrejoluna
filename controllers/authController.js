@@ -1,6 +1,8 @@
 const passport = require("passport");
 const mongoose = require("mongoose");
 const Vacancy = mongoose.model("Vacancy");
+const Users = mongoose.model("Users");
+const crypto = require("crypto");
 
 exports.authUser = passport.authenticate("local", {
   successRedirect: "/admin",
@@ -40,4 +42,24 @@ exports.formRecoverPassword = (req, res) => {
     pageName: "Recover Password",
     tagLine: "Enter your email for send recover link",
   });
+};
+
+exports.sendToken = async (req, res) => {
+  const user = await Users.findOne({ email: req.body.email });
+
+  if (!user) {
+    req.flash("error", "Account not exists");
+    return res.redirect("/login");
+  }
+
+  user.token = crypto.randomBytes(20).toString("hex");
+  user.expiry = Date.now() + 3600000;
+
+  await user.save();
+  const resetUrl = `http://${req.headers.host}/recover-password/${user.token}`;
+
+  console.log(resetUrl);
+
+  req.flash("correcto", "We sent you an email with instructions");
+  res.redirect("/login");
 };
