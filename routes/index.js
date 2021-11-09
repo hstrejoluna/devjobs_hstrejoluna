@@ -54,7 +54,6 @@ module.exports = () => {
 
   router.get("/admin", authController.verifyUser, authController.showPanel);
 
-
   router.get(
     "/edit-profile",
     authController.verifyUser,
@@ -64,9 +63,15 @@ module.exports = () => {
   router.post(
     "/edit-profile",
     authController.verifyUser,
-    //usersController.validateEditProfile,
+    usersController.validateEditProfile,
     usersController.uploadImage,
     usersController.editProfile
+  );
+
+  router.post(
+    "/vacancies/:url",
+    vacancyController.uploadCV,
+    vacancyController.contact
   );
   return router;
 };

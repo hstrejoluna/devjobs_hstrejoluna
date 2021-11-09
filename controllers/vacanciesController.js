@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Vacancy = mongoose.model("Vacancy");
-const { body, validationResult } = require("express-validator");
+
+const multer = require("multer");
+const shortid = require("shortid");
 
 exports.formNewVacancy = (req, res) => {
   res.render("new-vacancy", {
@@ -122,3 +124,45 @@ const verifyAuthor = (vacancy = {}, user = {}) => {
   }
   return true;
 };
+
+exports.uploadCV = (req, res, next) => {
+  upload(req, res, function (error) {
+    if (error) {
+      if (error instanceof multer.MulterError) {
+        if (error.code === "LIMIT_FILE_SIZE") {
+          req.flash("error", "The file is too big: 500kb Max");
+        } else {
+          req.flash("error", error.message);
+        }
+      } else {
+        req.flash("error", error.message);
+      }
+      res.redirect("/back");
+      return;
+    } else {
+      return next();
+    }
+  });
+};
+
+const settingsMulter = {
+  limits: { fileSize: 500000 },
+  storage: (fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, __dirname + "../../public/uploads/cv");
+    },
+    filename: (req, file, cb) => {
+      const extension = file.mimetype.split("/")[1];
+      cb(null, `${shortid.generate()}.${extension}`);
+    },
+  })),
+  fileFilter(req, file, cb) {
+    if (file.mimetype === "application/pdf") {
+      cb(null, true);
+    } else {
+      cb(new Error("Format not valid"), false);
+    }
+  },
+};
+
+const upload = multer(settingsMulter).single("cv");
