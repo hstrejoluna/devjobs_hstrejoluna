@@ -23,8 +23,9 @@ exports.addVacancy = async (req, res) => {
 };
 
 exports.showVacancy = async (req, res, next) => {
-  const vacancy = await Vacancy.findOne({ url: req.params.url }).lean();
-  console.log("VACANTE ES:" + vacancy);
+  const vacancy = await Vacancy.findOne({ url: req.params.url })
+    .populate("author")
+    .lean();
   // if there's not request
   if (!vacancy) return next();
   res.render("vacancy", {
