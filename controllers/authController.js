@@ -60,11 +60,27 @@ exports.sendToken = async (req, res) => {
 
   await sendEmail.send({
     user,
-    subject: 'Password Reset',
+    subject: "Password Reset",
     resetUrl,
-    fileName: 'reset',
+    fileName: "reset",
   });
 
   req.flash("correcto", "We sent you an email with instructions");
   res.redirect("/login");
+};
+
+exports.recoverPassword = async (req, res) => {
+  const user = await Users.findOne({
+    token: req.params.token,
+    expiry: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    req.flash("error", "The form is not valid, please submit again");
+    return res.redirect("/recover-password");
+  }
+
+  res.render("new-password", {
+    pageName: "New Password",
+  })
 };
