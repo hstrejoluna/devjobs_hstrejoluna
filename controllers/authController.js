@@ -60,7 +60,7 @@ exports.sendToken = async (req, res) => {
 
   await sendEmail.send({
     user,
-    subject: "Password Reset",
+    subject: "Password Reset one",
     resetUrl,
     fileName: "reset",
   });
