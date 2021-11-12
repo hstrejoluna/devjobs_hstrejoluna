@@ -82,5 +82,28 @@ exports.recoverPassword = async (req, res) => {
 
   res.render("new-password", {
     pageName: "New Password",
-  })
+  });
+};
+
+exports.savePassword = async (req, res) => {
+  const user = await Users.findOne({
+    token: req.params.token,
+    expiry: {
+      $gt: Date.now(),
+    },
+  });
+
+  if (!user) {
+    req.flash("error", "The form is expired, retry again");
+    return res.redirect("/recover-password");
+  }
+
+  user.password = req.body.password;
+  user.token = undefined;
+  user.expiry = undefined;
+
+  await user.save();
+
+  req.flash("correcto", "Password Modified Successfully");
+  res.redirect("/login");
 };

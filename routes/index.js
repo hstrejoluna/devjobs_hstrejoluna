@@ -57,7 +57,7 @@ module.exports = () => {
 
   router.get("/recover-password/:token", authController.recoverPassword);
 
-  
+  router.post("/recover-password/:token", authController.savePassword);
 
   router.get("/admin", authController.verifyUser, authController.showPanel);
 

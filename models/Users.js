@@ -34,7 +34,7 @@ usersSchema.pre("save", async function (next) {
 });
 
 usersSchema.post("save", function (error, doc, next) {
-  if (error.name === "MongoError" && error.code === 11000) {
+  if (error.name === "MongoServerError" && error.code === 11000) {
     next("Email already exists");
   } else {
     next(error);
