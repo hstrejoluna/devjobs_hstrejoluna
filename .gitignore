@@ -105,3 +105,6 @@ dist
 .tern-port
 variables.env
 config/email.js
+
+public/uploads/cv/*
+public/uploads/profiles/*
