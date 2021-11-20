@@ -70,6 +70,7 @@ app.use((req, res, next) => {
   next(createError(404, "Not Found"));
 });
 
+//Error handler
 app.use((error, req, res, next) => {
   res.locals.message = error.message;
   const status = error.status || 500;
@@ -78,4 +79,10 @@ app.use((error, req, res, next) => {
   res.render("error");
 });
 
-app.listen(process.env.PORT);
+// Heroku port
+const host = "0.0.0.0";
+const port = process.env.PORT || 5000;
+
+app.listen(port, host, () => {
+  console.log(`Server started at http://${host}:${port}`);
+});
