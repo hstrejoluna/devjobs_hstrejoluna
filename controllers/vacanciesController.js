@@ -203,3 +203,17 @@ exports.showCandidates = async (req, res, next) => {
     candidates: vacancy.candidates,
   });
 };
+
+exports.searchVacancies = async (req, res) => {
+  const vacancies = await Vacancy.find({
+    $text: {
+      $search: req.body.q,
+    },
+  });
+
+  res.render("home", {
+    pageName: `Search results for: ${req.body.q}`,
+    barra: true,
+    vacancies,
+  });
+};

@@ -87,5 +87,7 @@ module.exports = () => {
     vacanciesController.showCandidates
   );
 
+  router.post("/search", vacanciesController.searchVacancies);
+
   return router;
 };

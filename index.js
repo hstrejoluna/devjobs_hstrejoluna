@@ -10,6 +10,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const expressValidator = require("express-validator");
 const flash = require("connect-flash");
+const createError = require("http-errors");
 const passport = require("./config/passport");
 
 const handlebars = require("handlebars");
@@ -64,5 +65,17 @@ app.use((req, res, next) => {
 });
 
 app.use("/", router());
+
+app.use((req, res, next) => {
+  next(createError(404, "Not Found"));
+});
+
+app.use((error, req, res, next) => {
+  res.locals.message = error.message;
+  const status = error.status || 500;
+  res.locals.status = status;
+  res.status(status);
+  res.render("error");
+});
 
 app.listen(process.env.PORT);
