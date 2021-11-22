@@ -7,4 +7,4 @@ Paquetes externos que se utilizaron:
 Axios para 
 SweetAlert2 para alertas.
 Trix.js para editor de texto.
-
+(borrador)
